@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>인터넷활용 실습 템플릿</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <body style="background-color: #fff0f5;">
+
+    <header>
+        <h1>이름: 사심영</h1>
+        <p class="subtitle">한 줄 소개: 영산 학과</p>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <main class="container">
+        <section>
+            <li>
+                <strong>D-Day 계산기</strong><br>
+                <script>
+    let now = new Date();
+    let targetDate; 
+
+    let year1 = prompt("목표 연도를 입력해주세요 ", "");
+    let month1 = prompt("목표 월을 입력해주세요 ", "");
+    let day1 = prompt("목표 일을 입력해주세요 ", "");
+
+    if (!year1 || !month1 || !day1) { 
+        document.write("취소했습니다."); 
+    } else {
+        let year = parseInt(year1);
+        let month = parseInt(month1);
+        let day = parseInt(day1);
+
+        targetDate = new Date(year, month - 1, day); 
+            }
+
+    if (targetDate) {   // only calculate if valid
+        let diffMs = targetDate.getTime() - now.getTime();
+        let diffDay = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+
+        document.write("<h3>목표 날짜: " + targetDate.toLocaleString() + "</h3>");
+
+        if (diffDay === 0) {
+            document.write("<h3> D-Day 입니다!</h3>");
+        } else if (diffDay > 0) {
+            document.write("<h3> D-" + diffDay + "일 남았습니다.</h3>");
+        } else {
+            document.write("<h3> D+" + Math.abs(diffDay) + "일 지났습니다。</h3>");
+        }
+
+        document.write("<hr>");
+        document.write("<p>오늘 날짜: " + now.toLocaleString() + "</p>");
+        document.write("<p><i>새로고침(F5)을 눌러 다시 계산할 수 있습니다。</i></p>");
+    }
+</script>
+
+        </section>
+</body>
+
+</html>
