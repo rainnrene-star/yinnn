@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>DOM 스타일 변환기</title>
+
+    <style>
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    text-align: center;
+    padding: 50px;
+}
+
+/* 目標文字的基本樣式 */
+#target {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
+    border: 2px solid #ccc;
+    margin: 20px auto;
+    width: 80%;
+    transition: all 0.3s;
+}
+
+        #target {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 20px;
+            border: 2px solid #ccc;
+            width: 80%;
+            margin: 20px auto;
+            transition: 0.3s;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        function changeColor() {
+            document.getElementById("target").style.color = "red";
+        }
+
+        function changeSize() {
+            document.getElementById("target").style.fontSize = "32px";
+        }
+
+        function highlightBg() {
+            document.getElementById("target").style.backgroundColor = "gray";
+        }
+
+        function toggleText() {
+            let t = document.getElementById("target");
+
+            if (t.style.display === "none") {
+                t.style.display = "block";
+            } else {
+                t.style.display = "none";
+            }
+        }
+
+        
+        function coolEffect() {
+            let t = document.getElementById("target");
+            t.style.color = "white";
+            t.style.backgroundColor = "pink";
+            t.style.padding = "15px";
+            t.style.borderRadius = "10px";
+            t.style.boxShadow = "2px 2px 5px gray";
+            t.style.transform = "scale(1.05)";
+        }
+    </script>
+</head>
+
+<body>
+
+    <h2>DOM 스타일 변환 실험</h2>
+
+    <p id="target">문자 모양 바뀌기！</p>
+
+    <button onclick="changeColor()">문자 컬러 바뀌기</button>
+    <button onclick="changeSize()">크게 보기</button>
+    <button onclick="highlightBg()">배경 컬러 바뀌기</button>
+    <button onclick="toggleText()">숨기기 /보이기</button>
+    <button onclick="coolEffect()">스페셜 모드</button>
+
+</body>
+</html>
