@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>피자 주문서</title>
+    <style>
+        body{
+            font-family: Arial;
+            margin: 20px;
+        }
+        #total{
+            width:120px;
+            text-align:right;
+        }
+        #menu_box div{
+            margin-bottom:6px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>스마트 피자 주문서</h2>
+
+<div id="menu_box">
+    <h4>메뉴 선택</h4>
+
+    <div>
+        <input type="checkbox" class="menu-check" value="15000" onchange="recalc()">
+        콤비네이션(15000)
+        <input type="number" class="menu-qty" value="1" min="1" onchange="recalc()" onkeyup="recalc()"> 개
+    </div>
+
+    <div>
+        <input type="checkbox" class="menu-check" value="18000" onchange="recalc()">
+        불고기(18000)
+        <input type="number" class="menu-qty" value="1" min="1" onchange="recalc()" onkeyup="recalc()"> 개
+    </div>
+
+    <div>
+        <input type="checkbox" class="menu-check" value="20000" onchange="recalc()">
+        포테이토(20000)
+        <input type="number" class="menu-qty" value="1" min="1" onchange="recalc()" onkeyup="recalc()"> 개
+    </div>
+
+    <div>
+        <input type="checkbox" class="menu-check" value="22000" onchange="recalc()">
+        치즈크러스트피자(22000)
+        <input type="number" class="menu-qty" value="1" min="1" onchange="recalc()" onkeyup="recalc()"> 개
+    </div>
+
+    <div>
+        <input type="checkbox" class="menu-check" value="25000" onchange="recalc()">
+        하와이언 피자(25000)
+        <input type="number" class="menu-qty" value="1" min="1" onchange="recalc()" onkeyup="recalc()"> 개
+    </div>
+
+    <div>
+        <input type="checkbox" class="menu-check" value="30000" onchange="recalc()">
+        야채(30000)
+        <input type="number" class="menu-qty" value="1" min="1" onchange="recalc()" onkeyup="recalc()"> 개
+    </div>
+
+    <div>
+        <input type="checkbox" class="menu-check" value="17000" onchange="recalc()">
+        페페로니(17000)
+        <input type="number" class="menu-qty" value="1" min="1" onchange="recalc()" onkeyup="recalc()"> 개
+    </div>
+
+</div>
+
+<p>
+    총액 : <input type="text" id="total" value="0" readonly> 원
+</p>
+
+<p>
+    주소 : <input type="text" id="addr" size="40" onblur="checkAddr()">
+</p>
+
+<form onsubmit="return validate(event)">
+    <button type="submit">주문하기</button>
+</form>
+
+<script>
+    function recalc(){
+        let total = 0;
+        let c = document.getElementsByClassName("menu-check");
+        let q = document.getElementsByClassName("menu-qty");
+
+        for(let i=0; i<c.length; i++){
+            if(c[i].checked){
+                let price = parseInt(c[i].value);
+                let qty = parseInt(q[i].value);
+                total += price * qty;
+            }
+        }
+        document.getElementById("total").value = total;
+    }
+
+    function checkAddr(){
+        let a = document.getElementById("addr");
+        if(a.value.trim() === ""){
+            alert("주소를 입력하세요.");
+            a.focus();
+        }
+    }
+
+    function validate(e){
+        let t = parseInt(document.getElementById("total").value);
+
+        if(!t || t === 0){
+            alert("메뉴를 선택해주세요.");
+        } else {
+            alert("주문 완료! 총액 : " + t + "원");
+        }
+
+        e.preventDefault(); //전송 막기
+        return false;
+    }
+</script>
+
+</body>
+</html>
